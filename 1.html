@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dashboard </title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sidebar {
+      position: fixed;
+      height: 100%;
+      width: 240px;
+      transition: all 0.5s ease;
+      z-index: 1;
+      /* Add this line */
+    }
+
+    .sidebar.active {
+      width: 60px;
+    }
+
+    .sidebar .logo-details {
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar .logo-details i {
+      font-size: 28px;
+      font-weight: 500;
+      color: #f3f0f0;
+      min-width: 60px;
+      text-align: center
+    }
+
+    .dashboard-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+
+
+
+    .sidebar .nav-links li a::after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 5px solid #fff;
+    }
+
+
+    .sidebar .logo-details .logo_name {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    /* .sidebar .nav-links {
+      margin-top: 50px;
+    } */
+
+    .sidebar .nav-links li {
+      position: relative;
+      list-style: none;
+      height: 50px;
+    }
+
+    .sidebar .nav-links li a {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.4s ease;
+    }
+
+    .sidebar .nav-links li a.active {
+      background: rgb(38, 62, 94);
+    }
+
+    .sidebar .nav-links li a:hover {
+      background: #2495ff;
+    }
+
+    .sidebar .nav-links li i {
+      min-width: 60px;
+      text-align: center;
+      font-size: 18px;
+      color: #faf2f2;
+    }
+
+    .sidebar .nav-links li a .links_name {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+
+    .calendar-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .mail-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .elements-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .forms-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .charts-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .tables-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .icons-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .maps-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .settings-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .logout-logo {
+      position: absolute;
+      left: 20px;
+      width: 60px;
+      color: #f3f0f0;
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #747475;
+      height: 80px;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+
+
+
+
+    .sidebar .nav-links .log_out {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .home-section {
+      position: relative;
+      background: #f8f5f5;
+      min-height: 100vh;
+      width: calc(100% - 240px);
+      left: 240px;
+      transition: all 0.5s ease;
+    }
+
+    .dashboard-info {
+      padding: 10px;
+      width: calc(100% - 240px);
+      left: 240px;
+    }
+
+    .dashboard-title {
+      font-size: 24px;
+      font-weight: 500;
+      left: 500px;
+    }
+
+    .welcome-message {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+
+
+    .home-content {
+      padding-top: 160px;
+    }
+
+
+    .sidebar.active~.home-section {
+      width: calc(100% - 60px);
+      left: 60px;
+    }
+
+    .home-section nav {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      background: #757577;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      width: calc(100% - 240px);
+      left: 240px;
+      z-index: 100;
+      padding: 0 20px;
+    }
+
+    .sidebar.active~.home-section nav {
+      left: 60px;
+      width: calc(100% - 60px);
+    }
+
+    .home-section nav .sidebar-button {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    nav .sidebar-button i {
+      font-size: 35px;
+      margin-right: 10px;
+    }
+ 
+.menu-logo{
+    position: absolute;
+  display: flex;
+  align-items: center;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+
+    .home-section nav .search-box {
+      position: relative;
+      height: 50px;
+      left: 170px;
+      max-width: 550px;
+      width: 100%;
+      margin: 0 20px;
+    }
+
+    nav .search-box input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      background: #F5F6FA;
+      border: 2px solid #EFEEF1;
+      border-radius: 6px;
+      font-size: 18px;
+      padding: 0 15px;
+    }
+
+    nav .search-box .bx-search {
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      background: #3552f7;
+      right: 700px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 4px;
+      line-height: 40px;
+      text-align: center;
+      color: #fff;
+      font-size: 22px;
+      transition: all 0.4 ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      background: #3b5688;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      width: calc(100% - 240px);
+      left: 240px;
+      z-index: 100;
+      padding: 0 20px;
+    }
+
+    /* Notification icon styles */
+
+    .notification-logo {
+  position: absolute;
+  margin-right: 10px;
+  right: 240px;
+}
+
+.fullscreen-logo {
+  position: absolute;
+  right: 300px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+
+    .search-box .material-symbols-outlined {
+      color: black;
+      height: 40px;
+      width: 100px;
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 4px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 22px;
+      transition: all 0.4s ease;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+    }
+
+
+
+    .material-symbols-outlined {
+      color: rgb(248, 248, 248);
+    }
+
+
+
+    .home-section nav .profile-details {
+      display: flex;
+      align-items: center;
+      background: #F5F6FA;
+      border: 2px solid #EFEEF1;
+      border-radius: 6px;
+      height: 50px;
+      min-width: 190px;
+      padding: 0 15px 0 2px;
+    }
+
+    nav .profile-details img {
+      height: 40px;
+      width: 40px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    nav .profile-details .admin_name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      margin: 0 10px;
+      white-space: nowrap;
+    }
+
+    .home-section .home-content {
+      position: relative;
+      padding-top: 104px;
+    }
+
+    .home-content .overview-boxes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 20px;
+      margin-bottom: 26px;
+    }
+
+    .overview-boxes .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(100% / 4 - 15px);
+      background: #8095da;
+      padding: 15px 14px;
+      border-radius: 12px;
+    }
+
+    .overview-boxes .box-topic {
+      margin-right: 100%;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .home-content .box .number {
+      display: inline-block;
+      font-size: 35px;
+      margin-top: -6px;
+      font-weight: 500;
+    }
+
+    .home-content .box .indicator {
+      display: flex;
+      align-items: center;
+    }
+
+
+    .home-content .box .cart {
+      display: inline-block;
+      font-size: 32px;
+      height: 50px;
+      width: 50px;
+      background: #cce5ff;
+      line-height: 50px;
+      text-align: center;
+      color: #66b0ff;
+      border-radius: 12px;
+      margin: -15px 0 0 6px;
+    }
+
+    .home-content .box .cart.two {
+      color: #2BD47D;
+      background: #C0F2D8;
+    }
+
+    .home-content .box .cart.three {
+      color: #ffc233;
+      background: #ffe8b3;
+    }
+
+    .home-content .box .cart.four {
+      color: #e05260;
+      background: #f7d4d7;
+    }
+
+    .home-content .total-order {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .home-content .sales-boxes {
+      display: flex;
+      justify-content: space-between;
+
+    }
+
+    .home-content .sales-boxes .recent-sales {
+      width: 65%;
+      background: #f4f4f7;
+      padding: 20px 30px;
+      margin: 0 20px;
+      border-radius: 12px;
+    }
+
+    .home-content .sales-boxes .sales-details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sales-boxes .box .title {
+      font-size: 24px;
+      font-weight: 500;
+      /* margin-bottom: 10px; */
+    }
+
+    .sales-boxes .sales-details li.topic {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .sales-boxes .sales-details li {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    .sales-boxes .sales-details li a {
+      font-size: 18px;
+      color: #333;
+      font-size: 400;
+      text-decoration: none;
+    }
+
+
+
+    .sales-boxes .box .button {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .sales-boxes .box .button a {
+      color: #fff;
+      background: #0A2558;
+      padding: 4px 12px;
+      font-size: 15px;
+      font-weight: 400;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .sales-boxes .box .button a:hover {
+      background: #0d3073;
+    }
+
+    /* Right box */
+    .home-content .sales-boxes .top-sales {
+      width: 35%;
+      background: #fff;
+      padding: 20px 30px;
+      margin: 0 20px 0 0;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .table-container {
+      max-width: 700px;
+      left: 100px;
+      margin: 10px auto;
+      margin-top: 20px;
+      margin-left: -20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      font-weight: bold;
+    }
+
+    img.customer-img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+
+    tr:nth-child(even) {
+      background-color: #b0b0b0;
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sidebar {
+      position: fixed;
+      font-family: 'Noto Sans', sans-serif;
+      height: 100%;
+      width: 240px;
+      background: #081836;
+      transition: all 0.5s ease;
+    }
+    .chat-container {
+  position: relative;
+}
+
+.chat-bubble {
+  position: absolute;
+  top: 230px;
+  left: 100px;
+  background: #000000;
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: 20px;
+  line-height: 42px;
+  text-align: center;
+  width: 200px;
+  height: 42px;
+  border-radius: 10px;
+  padding: 0px;
+}
+
+.chat-bubble:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-color: #000000 transparent;
+  border-width: 11px 7px 0;
+  bottom: -11px;
+  left: 89%;
+  margin-left: -7px;
+}
+
+.chatbox {
+  position: absolute;
+  top: 300px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #F5F6FA;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.chatbox textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 10px;
+  resize: none;
+}
+
+.chatbox button {
+  border: none;
+  outline: none;
+  background-color: #2697FF;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chatbox button:hover {
+  background-color: #1c7be8;
+}
+  </style>
+    <!--search icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--notif icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--menu icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <!--fullscreen icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--dashboard icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--calendar icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--email icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--ui icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--forms icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--charts icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--table icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--icon icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--maps icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--setting icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--logout icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="sidebar" style="background-color: rgb(38, 62, 94);">
+    <div class="logo-details">
+      <span class="logo_name" style=" position:absolute;left:40px;"><strong>GeekyAnts</strong></span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#" class="active">
+          <i class='bx bx-grid-alt'></i>
+          <span class="material-symbols-outlined dashboard-logo">
+            home
+          </span>
+          <span class="links_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-box'></i>
+          <span class="material-symbols-outlined calendar-logo">
+            calendar_today
+          </span>
+          <span class="links_name">Calendar</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="material-symbols-outlined mail-logo">
+            mail
+          </span>
+          <span class="links_name">Email</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="material-symbols-outlined elements-logo">
+            deployed_code
+          </span>
+          <span class="links_name">UI Elements</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-coin-stack'></i>
+          <span class="material-symbols-outlined forms-logo">
+            text_snippet
+          </span>
+          <span class="links_name">Forms</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt'></i>
+          <span class="material-symbols-outlined charts-logo">
+            monitoring
+          </span>
+          <span class="links_name">Charts</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-user'></i>
+          <span class="material-symbols-outlined tables-logo">
+            grid_view
+          </span>
+          <span class="links_name">Tables</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-message'></i>
+          <span class="material-symbols-outlined icons-logo">
+            add_reaction
+          </span>
+          <span class="links_name">Icons</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-heart'></i>
+          <span class="material-symbols-outlined maps-logo">
+            pin_drop
+          </span>
+          <span class="links_name">Maps</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog'></i>
+          <span class="material-symbols-outlined settings-logo">
+            settings
+          </span>
+          <span class="links_name">Setting</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="#">
+          <i class='bx bx-log-out'></i>
+          <span class="material-symbols-outlined logout-logo">
+            account_circle
+          </span>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+        <span class="material-symbols-outlined menu-logo">
+            menu
+            </span>
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <span class="material-symbols-outlined search-logo">
+          search
+        </span>
+      </div>
+      <span class="material-symbols-outlined notification-logo">
+        notifications
+        </span>
+      <span class="material-symbols-outlined fullscreen-logo">
+        fullscreen
+      </span>
+
+      <div class="profile-details">
+        <img src="pp4.jpg" alt="">
+        <span class="admin_name">Sam Smith</span>
+        <i class='bx bx-chevron-down'></i>
+      </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="dashboard-info">
+        <div class="dashboard-title" style="font-size: xx-large;"><strong>Dashboard</strong></div>
+        <div class="welcome-message">Welcome to GeekyAnts</div>
+      </div>
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Orders</div>
+            <div class="number">1,685</div>
+          </div>
+          <img class='bx bx-cart-alt cart' src="order.png"></img>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Revenue</div>
+            <div class="number">52,368</div>
+          </div>
+          <img class='bx bxs-cart-add cart two' src="rev.png"></img>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Profit</div>
+            <div class="number">$12,876</div>
+          </div>
+          <img class='bx bx-cart cart three' src="avg.png"></img>
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Stock</div>
+            <div class="number">11,086</div>
+          </div>
+          <img class='bx bxs-cart-download cart four' src="pro.png"></img>
+        </div>
+      </div>
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title"><strong>Latest Transactions</strong></div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Sales</th>
+                  <th>Date</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp1.jpg" alt="Customer 1">
+                    Alex Doe
+                  </td>
+                  <td>Delivered</td>
+                  <td>02 Jan 2021</td>
+                  <td>$204.98</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp2.jpg" alt="Customer 2">
+                    David Mart
+                  </td>
+                  <td>Pending</td>
+                  <td>02 Jan 2021</td>
+                  <td>$24.55</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp3.png" alt="Customer 3">
+                    Roe Parter
+                  </td>
+                  <td>Returned</td>
+                  <td>02 Jan 2021</td>
+                  <td>$25.88</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp4.jpg" alt="Customer 4">
+                    Diana Penty
+                  </td>
+                  <td>Delivered</td>
+                  <td>02 Jan 2021</td>
+                  <td>$170.66</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp5.jpg" alt="Customer 5">
+                    Martin Paw
+                  </td>
+                  <td>Pending</td>
+                  <td>02 Jan 2021</td>
+                  <td>$56.56</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp6.png" alt="Customer 6">
+                    Doe Alex
+                  </td>
+                  <td>Returned</td>
+                  <td>02 Jan 2021</td>
+                  <td>$44.95</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp7.jpg" alt="Customer 7">
+                    Aiana Lexa
+                  </td>
+                  <td>Delivered</td>
+                  <td>02 Jan 2021</td>
+                  <td>$67.33</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp8.jpg" alt="Customer 8">
+                    Rexel Mags
+                  </td>
+                  <td>Pending</td>
+                  <td>02 Jan 2021</td>
+                  <td>$23.53</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="customer-img" src="pp2.jpg" alt="Customer 9">
+                    Tiana Loths
+                  </td>
+                  <td>Delivered</td>
+                  <td>02 Jan 2021</td>
+                  <td>$46.52</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="button">
+              <a href="#">See All</a>
+            </div>
+          </div>
+        </div>
+        <div class="top-sales box">
+            <h2 class="chat-heading">Chat</h2>
+            <div class="chat-container">
+              <div class="chat-bubble" style="font-size: small;">
+                Good Morning!
+              </div>
+            
+              <div class="chatbox">
+                <textarea placeholder="Enter your message"></textarea>
+                <button>Send</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
